@@ -1,0 +1,8 @@
+.build/
+dist/
+release/
+node_modules/
+.codex/
+.DS_Store
+*.dmg
+*.zip

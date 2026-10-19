@@ -1,0 +1,71 @@
+{
+  "name": "antigravitystudio",
+  "version": "1.0.0",
+  "description": "An interactive desktop version of the Antigravity particle animation experience.",
+  "main": "electron/main.cjs",
+  "author": "Archer Shilling",
+  "license": "GPL-3.0-only",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist:windows": "electron-builder --win nsis --publish never",
+    "dist:linux": "electron-builder --linux deb --publish never"
+  },
+  "devDependencies": {
+    "electron": "^44.3.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.archershilling.antigravitystudio",
+    "productName": "AntigravityStudio",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "Sources/AntigravityStudio/Web/**/*",
+      "assets/**/*",
+      "package.json",
+      "LICENSE",
+      {
+        "from": "third_party/davidpelayo-antigravity-animation",
+        "to": "third_party/davidpelayo-antigravity-animation",
+        "filter": [
+          "LICENSE.md",
+          "README.md",
+          "antigravity-pattern.html",
+          "antigravity-basic.html"
+        ]
+      }
+    ],
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.graphics-design"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/platform-icons/antigravitystudio-windows.ico"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "category": "Graphics",
+      "icon": "assets/platform-icons/antigravitystudio-linux.png"
+    },
+    "deb": {
+      "maintainer": "Archer Shilling <Archer@shilling.id.au>",
+      "synopsis": "Interactive particle field",
+      "description": "Antigravity Studio particle field"
+    }
+  }
+}
